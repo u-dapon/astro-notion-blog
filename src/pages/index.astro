@@ -1,23 +1,22 @@
 ---
-import { NUMBER_OF_POSTS_PER_PAGE } from '../server-constants.ts'
+import { NUMBER_OF_POSTS_PER_PAGE } from '../server-constants'
 import {
   getPosts,
   getRankedPosts,
   getAllTags,
   getNumberOfPages,
-} from '../lib/notion/client.ts'
+  getDatabase
+} from '../lib/notion/client'
 import Layout from '../layouts/Layout.astro'
 import NoContents from '../components/NoContents.astro'
-import PostDate from '../components/PostDate.astro'
-import PostTags from '../components/PostTags.astro'
-import PostTitle from '../components/PostTitle.astro'
-import PostFeaturedImage from '../components/PostFeaturedImage.astro'
-import PostExcerpt from '../components/PostExcerpt.astro'
-import ReadMoreLink from '../components/ReadMoreLink.astro'
+import PostCards from '../components/PostCards.astro'
 import Pagination from '../components/Pagination.astro'
 import BlogPostsLink from '../components/BlogPostsLink.astro'
 import BlogTagsLink from '../components/BlogTagsLink.astro'
+import CoverImage from '../components/CoverImage.astro'
+import TopProfile from '../components/top/TopProfile.astro'
 import styles from '../styles/blog.module.css'
+import FooterCard from '../components/FooterCard.astro'
 
 const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   getPosts(NUMBER_OF_POSTS_PER_PAGE),
@@ -25,30 +24,34 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   getAllTags(),
   getNumberOfPages(),
 ])
+
+
 ---
 
-<Layout>
+<Layout title="トップページ" description="" path="/" ogImage="">
+  <div slot="header">
+    <CoverImage />
+  </div>
+  
   <div slot="main" class={styles.main}>
+    <TopProfile />
+
     {
       posts.length === 0 ? (
         <NoContents contents={posts} />
       ) : (
-        posts.map((post) => (
-          <div class={styles.post} key={post.Slug}>
-            <PostDate post={post} />
-            <PostTags post={post} />
-            <PostTitle post={post} />
-            <PostFeaturedImage post={post} />
-            <PostExcerpt post={post} />
-            <ReadMoreLink post={post} />
-          </div>
-        ))
+        <h2>記事一覧</h2>
+        <PostCards posts={posts} />
       )
     }
 
     <footer>
       <Pagination currentPage={1} numberOfPages={numberOfPages} />
     </footer>
+  </div>
+
+  <div slot="footer">
+    <FooterCard />
   </div>
 
   <div slot="aside" class={styles.aside}>
