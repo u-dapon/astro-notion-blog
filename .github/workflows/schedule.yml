@@ -2,8 +2,8 @@ name: Scheduled Deploy
 
 on:
   schedule:
-    # Runs every day at 2 AM UTC
-    - cron: '*/5 * * * *'
+    # Runs 2 times every day
+    - cron: '* */12 * * *'
 
 jobs:
   build:
