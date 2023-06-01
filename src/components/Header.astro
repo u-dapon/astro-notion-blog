@@ -2,8 +2,7 @@
 import { getNavLink, filePath } from '../lib/blog-helpers'
 const { database } = Astro.props
 
-
-let customIconURL = "";
+let customIconURL = ''
 if (database.Icon && database.Icon.Type === 'file') {
   try {
     customIconURL = filePath(new URL(database.Icon.Url))
@@ -14,28 +13,28 @@ if (database.Icon && database.Icon.Type === 'file') {
 ---
 
 <header>
-    <a href={getNavLink('/')}>
-      {
-        database.Icon && database.Icon.Type === 'emoji' ? (
-          <>
-            <span>{database.Icon.Emoji}</span>
-            {database.Title}
-          </>
-        ) : database.Icon && database.Icon.Type === 'external' ? (
-          <>
-            <img src={database.Icon.Url} alt="icon" />
-            {database.Title}
-          </>
-        ) : database.Icon && database.Icon.Type === 'file' ? (
-          <>
-            <img src={customIconURL} class="custom-icon" alt="icon" />
-            {database.Title}
-          </>
-        ) : (
-          database.Title
-        )
-      }
-    </a>
+  <a href={getNavLink('/')}>
+    {
+      database.Icon && database.Icon.Type === 'emoji' ? (
+        <>
+          <span>{database.Icon.Emoji}</span>
+          {database.Title}
+        </>
+      ) : database.Icon && database.Icon.Type === 'external' ? (
+        <>
+          <img src={database.Icon.Url} alt="icon" />
+          {database.Title}
+        </>
+      ) : database.Icon && database.Icon.Type === 'file' ? (
+        <>
+          <img src={customIconURL} class="custom-icon" alt="icon" />
+          {database.Title}
+        </>
+      ) : (
+        database.Title
+      )
+    }
+  </a>
 </header>
 
 <style>
@@ -60,5 +59,5 @@ if (database.Icon && database.Icon.Type === 'file') {
   header a img {
     height: 30px;
     border-radius: 6px;
- }
+  }
 </style>

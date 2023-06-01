@@ -14,13 +14,13 @@ const { post } = Astro.props
 
 {
   post && (
-      <a href={getPostLink(post.Slug)} class="post-card" key={post.Slug}>
-        <PostImage post={post} />
-        <div class="post-card-description">
-          <PostDate post={post} />
-          <h3 class="post-title">{ post.Title }</h3>
-        </div>
-      </a>
+    <a href={getPostLink(post.Slug)} class="post-card" key={post.Slug}>
+      <PostImage post={post} />
+      <div class="post-card-description">
+        <PostDate post={post} />
+        <h3 class="post-title">{post.Title}</h3>
+      </div>
+    </a>
   )
 }
 

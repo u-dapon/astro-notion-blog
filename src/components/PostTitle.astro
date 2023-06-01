@@ -13,13 +13,7 @@ let title = post.Title
 ---
 
 <h1 class="post-title">
-  {
-    enableLink ? (
-      <a href={getPostLink(post.Slug)}>{ title }</a>
-    ) : (
-      <>{title}</>
-    )
-  }
+  {enableLink ? <a href={getPostLink(post.Slug)}>{title}</a> : <>{title}</>}
 </h1>
 
 <style>

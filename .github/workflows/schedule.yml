@@ -3,13 +3,17 @@ name: Scheduled Deploy
 on:
   schedule:
     # Runs every day at 2 AM UTC
-    - cron:  '45 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy to Cloudflare Pages
-      run: sh ./auto_commit.sh
+      - uses: actions/checkout@v2
+      - name: Add History
+        run: echo auto_commit_`date "+%Y%m%d"` >>history
+      - name: Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4.2.0
+        with:
+          commit_message: Auto Commit
