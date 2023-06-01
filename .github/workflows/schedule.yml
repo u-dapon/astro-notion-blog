@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Add History
         run: echo auto_commit_`date "+%Y%m%d"` >>history
       - name: Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4.2.0
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Auto Commit
