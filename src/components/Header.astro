@@ -23,12 +23,12 @@ if (database.Icon && database.Icon.Type === 'file') {
           </>
         ) : database.Icon && database.Icon.Type === 'external' ? (
           <>
-            <img src={database.Icon.Url} />
+            <img src={database.Icon.Url} alt="icon" />
             {database.Title}
           </>
         ) : database.Icon && database.Icon.Type === 'file' ? (
           <>
-            <img src={customIconURL} class="custom-icon" />
+            <img src={customIconURL} class="custom-icon" alt="icon" />
             {database.Title}
           </>
         ) : (
