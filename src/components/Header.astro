@@ -3,7 +3,7 @@ import { getNavLink, filePath } from '../lib/blog-helpers'
 const { database } = Astro.props
 
 
-let customIconURL: string = "";
+let customIconURL = "";
 if (database.Icon && database.Icon.Type === 'file') {
   try {
     customIconURL = filePath(new URL(database.Icon.Url))

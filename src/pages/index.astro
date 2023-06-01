@@ -5,7 +5,6 @@ import {
   getRankedPosts,
   getAllTags,
   getNumberOfPages,
-  getDatabase
 } from '../lib/notion/client'
 import Layout from '../layouts/Layout.astro'
 import NoContents from '../components/NoContents.astro'
@@ -24,7 +23,6 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   getAllTags(),
   getNumberOfPages(),
 ])
-
 
 ---
 
