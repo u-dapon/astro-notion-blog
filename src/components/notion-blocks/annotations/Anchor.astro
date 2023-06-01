@@ -22,7 +22,7 @@ if (richText.Href?.startsWith('/')) {
 {
   /* prettier-ignore */
   href ? (
-    <a href={href}><slot /></a>
+    <a href={href} target="_blank"><slot /></a>
   ) : (
     <slot />
   )
