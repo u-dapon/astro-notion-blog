@@ -1,29 +1,29 @@
 ---
-import { PUBLIC_GA_TRACKING_ID, ENABLE_LIGHTBOX } from '../server-constants'
-import { getDatabase } from '../lib/notion/client'
-import { getNavLink, getStaticFilePath } from '../lib/blog-helpers'
-import '../styles/syntax-coloring.css'
-import GoogleAnalytics from '../components/GoogleAnalytics.astro'
-import Header from '../components/Header.astro'
+import { PUBLIC_GA_TRACKING_ID, ENABLE_LIGHTBOX } from '../server-constants';
+import { getDatabase } from '../lib/notion/client';
+import { getNavLink, getStaticFilePath } from '../lib/blog-helpers';
+import '../styles/syntax-coloring.css';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import Header from '../components/Header.astro';
 
 export interface Props {
-  title: string
-  description: string
-  path: string
-  ogImage: string
+  title: string;
+  description: string;
+  path: string;
+  ogImage: string;
 }
 
-const { title = '', description = '', path = '/', ogImage = '' } = Astro.props
+const { title = '', description = '', path = '/', ogImage = '' } = Astro.props;
 
-const database = await getDatabase()
+const database = await getDatabase();
 
-const siteTitle = title ? `${title} - ${database.Title}` : database.Title
-const siteDescription = description ? description : database.Description
-const siteURL = new URL(getNavLink(path), Astro.site).toString()
+const siteTitle = title ? `${title} - ${database.Title}` : database.Title;
+const siteDescription = description ? description : database.Description;
+const siteURL = new URL(getNavLink(path), Astro.site).toString();
 const siteOGImage = new URL(
   getStaticFilePath('/default-og-image.jpg'),
   Astro.site
-)
+);
 ---
 
 <!DOCTYPE html>
@@ -52,6 +52,34 @@ const siteOGImage = new URL(
       integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
       crossorigin="anonymous"
     />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-603YRECGSQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-603YRECGSQ');
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Person",
+        "name": "宇田龍矢",
+        "url": "https://udaa.jp/",
+        "image": "https://sheep-app.com/html/resource/img/profile.jpeg",
+        "sameAs": "https://twitter.com/u_dapon",
+        "jobTitle": "CEO",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Creatopia"
+        }
+      }
+    </script>
   </head>
   <body ontouchstart="">
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
