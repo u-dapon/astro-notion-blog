@@ -124,10 +124,10 @@ export const getStaticFilePath = (path: string): string => {
 
 export const getNavLink = (nav: string) => {
   if ((!nav || nav === '/') && BASE_PATH) {
-    return pathJoin(BASE_PATH, '') + '/'
+    return pathJoin(BASE_PATH, '')
   }
 
-  return pathJoin(BASE_PATH, nav)
+  return pathJoin(BASE_PATH, nav) + '/'
 }
 
 export const getPostLink = (slug: string) => {
