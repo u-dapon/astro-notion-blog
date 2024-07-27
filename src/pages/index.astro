@@ -23,6 +23,8 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   getAllTags(),
   getNumberOfPages(),
 ])
+
+  const filterdPosts = posts.filter((post) => !post.tags.includes('ライティング'))
 ---
 
 <Layout title="トップページ" description="" path="/" ogImage="">
@@ -34,12 +36,12 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
     <TopProfile />
 
     {
-      posts.length === 0 ? (
-        <NoContents contents={posts} />
+      filterdPosts.length === 0 ? (
+        <NoContents contents={filterdPosts} />
       ) : (
         <>
           <h2>記事一覧</h2>
-          <PostCards posts={posts} />
+          <PostCards posts={filterdPosts} />
         </>
       )
     }
